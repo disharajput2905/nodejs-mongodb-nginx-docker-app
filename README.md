@@ -147,6 +147,83 @@ NGINX will forward requests to the Node.js application internally.
 ![Project Output](screenshots/project-output1.png)
 
 ---
+---
+
+# 👤 Creating Users in the Application
+
+This project includes a simple API endpoint that allows users to be created and stored inside the MongoDB database through the Node.js backend.
+
+The request is sent through the **NGINX reverse proxy**, which forwards traffic to the Node.js application container internally.
+
+---
+
+## ➕ Add a User
+
+Run the following command in your terminal:
+
+```bash
+curl -X POST http://localhost:8080/add-user \
+-H "Content-Type: application/json" \
+-d '{"name":"Developer"}'
+```
+
+---
+
+## 📥 Expected Response
+
+```json
+{
+  "message": "User Added"
+}
+```
+
+---
+
+## 📋 Fetch All Users
+
+To view stored users from MongoDB:
+
+```bash
+curl http://localhost:8080/users
+```
+
+---
+
+## 📤 Example Output
+
+```json
+[
+  {
+    "_id": "6619bbeb3a4a07bb569e75d9",
+    "name": "Developer",
+    "__v": 0
+  }
+]
+```
+
+---
+
+## 🔍 What Happens Internally
+
+1. Request reaches **NGINX Reverse Proxy**
+2. NGINX forwards request to the **Node.js container**
+3. Node.js processes request and stores data in **MongoDB**
+4. MongoDB persists user data inside the database container
+
+This demonstrates real-world backend container communication using Docker networking.
+
+---
+
+## 📸 API Demonstration
+
+Example terminal output showing user creation and retrieval:
+
+```markdown
+![API Demo](screenshots/project-output1.png)
+```
+
+
+---
 
 # 🧠 Learning Outcomes
 
